@@ -6,6 +6,13 @@ public class PlayWithArrays {
 
 	public static void main(String[] args) {
 		System.out.println("Hello Arrays");
+		
+		int[] nums1 = {3,3};
+		int target = 6;
+		
+		int[] result = twoSum(nums1, target);
+		System.out.println(Arrays.toString(result));
+		
 
 		int[] arr1 = { 1, 2, 3, 4 };
 		int[] arr2 = { 1, 2, 3, 4 };
@@ -50,7 +57,23 @@ public class PlayWithArrays {
 	 * @return indices of the two numbers such that they add up to target.
 	 */
 	public static int[] twoSum(int[] nums, int target) {
-		return null;
+		int reminder=0;
+		int[] result= new int[2];
+		// target=26
+		//nums = [2,7,11,15]
+		
+		for(int i=0; i<nums.length; i++) {
+			reminder = target-nums[i];
+			for(int j=0; j<nums.length; j++) {
+				if(nums[j] == reminder && j!=i) {
+					result[0] = i;
+					result[1] = j;
+					return result;
+				}
+			}
+		} 
+		return result;
+		
 	}
 
 	/**
