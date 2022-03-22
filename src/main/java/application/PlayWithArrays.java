@@ -1,9 +1,14 @@
 package application;
 
+import java.util.Arrays;
+
 public class PlayWithArrays {
 
 	public static void main(String[] args) {
 		System.out.println("Hello Arrays");
+		
+		int[] nums = {2,10,3,77,97,35,53,541};
+		getPrimeNumbers(nums);
 	}
 
 	/**
@@ -189,6 +194,8 @@ public class PlayWithArrays {
 	 *         false if every element is distinct
 	 */
 	public static boolean containsDuplicate(int[] nums) {
+		
+			
 		return false;
 	}
 
@@ -211,7 +218,30 @@ public class PlayWithArrays {
 	 * @return all prime numbers filtered from the input
 	 */
 	public static int[] getPrimeNumbers(int[] nums) {
+		StringBuilder builder = new StringBuilder();
+		
+		for(int i=0; i<nums.length; i++) {
+			if(isPrime(nums[i])) {
+				builder.append(nums[i]);
+				builder.append(",");
+			}
+		} 
+		String primeNumbers = builder.toString();
+		String[] result = primeNumbers.split(",");
+		System.out.println(Arrays.toString(result));
+		
+		
 		return null;
+	}
+	
+	public static boolean isPrime(int number) {
+		for(int i=2; i<number; i++) {
+			if(number % i == 0) {
+				return false;
+			}
+		} 
+		return true;
+		
 	}
 
 }
