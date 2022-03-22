@@ -18,6 +18,10 @@ public class PlayWithArrays {
 		int[] arr2 = { 1, 2, 3, 4 };
 		double x = findMedianSortedArrays(arr1, arr2);
 		System.out.println(x);
+		
+		int[] numsJump = {3,2,1,2,4};
+		boolean resultJump = canJump(numsJump);
+		System.out.println(resultJump);
 
 		int[] nums = { 2, 10, 3, 77, 97, 35, 53, 541 };
 		int[] arrayResult = getPrimeNumbers(nums);
@@ -162,12 +166,33 @@ public class PlayWithArrays {
 	 * Input: nums = [2,3,1,1,4] Output: true Explanation: Jump 1 step from index 0
 	 * to 1, then 3 steps to the last index.
 	 * 
+	 * Given an array of non-negative integers, you are initially positioned at the first index of the array.
+
+		Each element in the array represents your maximum jump length at that position.
+
+		Determine if you are able to reach the last index.
+	 * 
 	 * @param nums
 	 * @return true if you can reach the last index, or false otherwise.
 	 */
 	public static boolean canJump(int[] nums) {
-
-		return false;
+			//nums = [2,3,1,1,4]
+		int maxLength = nums.length;
+		int helper=0;
+		
+		for(int i=0; i<maxLength; i++) {
+			helper=i;
+			while(helper<maxLength-1) {
+				if(nums[helper]==0) {
+					return false;
+				}
+				helper+=nums[helper];
+			}
+			if(helper>maxLength-1) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 //	@formatter:off
