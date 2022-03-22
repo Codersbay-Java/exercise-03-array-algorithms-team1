@@ -6,12 +6,19 @@ public class PlayWithArrays {
 
 	public static void main(String[] args) {
 		System.out.println("Hello Arrays");
+
+		int[] arr1 = { 1, 2, 3, 4 };
+		int[] arr2 = { 1, 2, 3, 4 };
+		double x = findMedianSortedArrays(arr1, arr2);
+		System.out.println(x);
+
+		int[] nums = { 2, 10, 3, 77, 97, 35, 53, 541 };
+		int[] arrayResult = getPrimeNumbers(nums);
+		System.out.println(Arrays.toString(arrayResult));
 		
-		int[] nums = {2,10,3,77,97,35,53,541};
-		getPrimeNumbers(nums);
-		
-		int[] duplicateNumbers = {1,1,3,3,4,2,2};
-		boolean duplicates =containsDuplicate(duplicateNumbers);
+
+		int[] duplicateNumbers = { 1, 1, 3, 3, 4, 2, 2 };
+		boolean duplicates = containsDuplicate(duplicateNumbers);
 		System.out.println(duplicates);
 	}
 
@@ -67,7 +74,21 @@ public class PlayWithArrays {
 	 * @return the median of two sorted arrays.
 	 */
 	public static double findMedianSortedArrays(int[] nums1, int[] nums2) {
-		return 1.0;
+		double[] arr3 = new double[nums1.length + nums2.length];
+
+		for (int i = 0; i < nums1.length; i++) {
+			arr3[i] = nums1[i];
+
+		}
+		for (int i = 0; i < nums2.length; i++) {
+			arr3[nums1.length + i] = nums2[i];
+		}
+
+		if (arr3.length % 2 == 0) {
+			return (arr3[arr3.length / 2] + arr3[arr3.length / 2 - 1]) / 2;
+		}
+		return (arr3[arr3.length / 2]);
+
 	}
 
 	/**
@@ -122,7 +143,7 @@ public class PlayWithArrays {
 	 * @return true if you can reach the last index, or false otherwise.
 	 */
 	public static boolean canJump(int[] nums) {
-		
+
 		return false;
 	}
 
@@ -200,8 +221,8 @@ public class PlayWithArrays {
 	 */
 	public static boolean containsDuplicate(int[] nums) {
 		Arrays.sort(nums);
-		for(int i=0; i<nums.length-1; i++) {
-			if (nums[i] == nums[i+1]) {
+		for (int i = 0; i < nums.length - 1; i++) {
+			if (nums[i] == nums[i + 1]) {
 				return true;
 			}
 		}
@@ -227,30 +248,39 @@ public class PlayWithArrays {
 	 * @return all prime numbers filtered from the input
 	 */
 	public static int[] getPrimeNumbers(int[] nums) {
-		StringBuilder builder = new StringBuilder();
-		
-		for(int i=0; i<nums.length; i++) {
-			if(isPrime(nums[i])) {
-				builder.append(nums[i]);
-				builder.append(",");
+		int[] newNums = new int[nums.length];
+		int helper = 0;
+
+		for (int i = 0; i < nums.length; i++) {
+			if (isPrime(nums[i])) {
+				newNums[i] = nums[i];
+				helper++;
+			} else {
+				newNums[i] = 0;
 			}
-		} 
-		String primeNumbers = builder.toString();
-		String[] result = primeNumbers.split(",");
-		System.out.println(Arrays.toString(result));
+		}
+		int[] result= new int[helper];
+		int indexHelper=0;
 		
-		
-		return null;
+		for(int i=0; i<newNums.length; i++)
+		{
+			if(newNums[i] > 0) {
+				result[indexHelper] = newNums[i];
+				indexHelper++;
+			}
+		}
+
+		return result;
 	}
-	
+
 	public static boolean isPrime(int number) {
-		for(int i=2; i<number; i++) {
-			if(number % i == 0) {
+		for (int i = 2; i < number; i++) {
+			if (number % i == 0) {
 				return false;
 			}
-		} 
+		}
 		return true;
-		
+
 	}
 
 }
