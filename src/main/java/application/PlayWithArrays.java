@@ -9,6 +9,10 @@ public class PlayWithArrays {
 		
 		int[] nums = {2,10,3,77,97,35,53,541};
 		getPrimeNumbers(nums);
+		
+		int[] duplicateNumbers = {1,1,3,3,4,2,2};
+		boolean duplicates =containsDuplicate(duplicateNumbers);
+		System.out.println(duplicates);
 	}
 
 	/**
@@ -118,6 +122,7 @@ public class PlayWithArrays {
 	 * @return true if you can reach the last index, or false otherwise.
 	 */
 	public static boolean canJump(int[] nums) {
+		
 		return false;
 	}
 
@@ -194,8 +199,12 @@ public class PlayWithArrays {
 	 *         false if every element is distinct
 	 */
 	public static boolean containsDuplicate(int[] nums) {
-		
-			
+		Arrays.sort(nums);
+		for(int i=0; i<nums.length-1; i++) {
+			if (nums[i] == nums[i+1]) {
+				return true;
+			}
+		}
 		return false;
 	}
 
